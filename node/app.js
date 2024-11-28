@@ -1,18 +1,25 @@
 const axios = require('axios');
 
 
-const url = 'http://127.0.0.1:5000/jogadores';
+const url = 'http://127.0.0.1:5000/converter';
 
 
-async function getJogadores() {
+const conversao = {
+    criptomoeda: 'bitcoin', 
+    moeda: 'usd',           
+    quantidade: 1         
+};
+
+
+async function converterCriptomoeda() {
     try {
-        const response = await axios.get(url);
-        console.log('Jogadores:', response.data);
+       
+        const response = await axios.post(url, conversao);
+        console.log('Resultado da conversão:', response.data);
     } catch (error) {
-        console.error('Erro ao listar jogadores:', error.message);
+        console.error('Erro ao realizar conversão:', error.message);
     }
 }
 
 
-
-getJogadores();  
+converterCriptomoeda();
